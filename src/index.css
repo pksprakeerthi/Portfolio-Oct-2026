@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #17111f;
+}
+
+body {
+  margin: 0;
+  background: #17111f;
+  color: #ece4f5;
+  font-family: Nunito, ui-rounded, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Soft pastel glow behind everything (fixed layer — no repaint on scroll) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(800px 520px at 8% -4%, rgba(255, 158, 207, 0.16), transparent 62%),
+    radial-gradient(760px 520px at 100% 18%, rgba(201, 182, 255, 0.16), transparent 62%),
+    radial-gradient(700px 480px at 30% 105%, rgba(154, 240, 208, 0.08), transparent 62%);
+}
+
+/* Rounded display font for headings */
+h1,
+h2,
+h3 {
+  font-family: Quicksand, Nunito, ui-rounded, ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(255, 158, 207, 0.25);
+  color: #fff;
+}
+
+/* Visible focus for keyboard users */
+:focus-visible {
+  outline: 2px solid #ff9ecf;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Skip link */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 300;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #ff9ecf;
+  color: #17111f;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Glass surface */
+.glass {
+  background: linear-gradient(180deg, rgba(255, 228, 244, 0.07), rgba(201, 182, 255, 0.03));
+  border: 1px solid rgba(255, 214, 238, 0.14);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Faded polka-dot backdrop */
+.grid-bg {
+  background-image: radial-gradient(rgba(255, 214, 238, 0.2) 1.2px, transparent 1.6px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 25%, transparent 75%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ff9ecf, #c9b6ff 55%, #9af0d0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Custom cursor (desktop, fine pointer only — native cursor stays visible) */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 400;
+  opacity: 0;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #ff9ecf;
+  box-shadow: 0 0 10px rgba(255, 158, 207, 0.8);
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 158, 207, 0.45);
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
+.cursor-ring[data-active='true'] {
+  width: 54px;
+  height: 54px;
+  background: rgba(255, 158, 207, 0.07);
+  border-color: rgba(201, 182, 255, 0.75);
+}
+.cursor-visible {
+  opacity: 1;
+}
+
+/* Thin scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #43365f transparent;
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

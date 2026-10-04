@@ -1,0 +1,8 @@
+Put your resume in this folder and name it exactly:
+
+    resume.pdf
+
+Final path:  pks-portfolio/public/resume.pdf
+
+Once it exists, every "Resume" / "Download Resume" button on the site works
+(served at /resume.pdf). You can delete this text file afterwards.
